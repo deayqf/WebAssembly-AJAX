@@ -11,7 +11,7 @@ This exploration is about expanding on what I learned from the previous explorat
 
 ---
 ### Setup
-** If you follow the README in my first [WebAssembly repo](https://github.com/deayqf/WebAssembly) it walks through how to get Emscripten set up.**
+**If you follow the README in my first [WebAssembly repo](https://github.com/deayqf/WebAssembly) it walks through how to get Emscripten set up.**
 
 **1. In your home directory, clone the [SDL-emscripten repo](https://github.com/gsathya/SDL-emscripten.git)**
 
@@ -21,7 +21,7 @@ This exploration is about expanding on what I learned from the previous explorat
 
 ---
 ### Printing Hello World
-**1. `cd` into your Apache document root:** `cd /var/www/html`**
+**1. `cd` into your Apache document root:** `cd /var/www/html`
 
 **2. Once you are in your document root, run these commands:**
   - `chmod 777` seems unnecessary but Emscripten has issues with permissions.
