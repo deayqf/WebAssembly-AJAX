@@ -17,11 +17,11 @@ This exploration is about expanding on what I learned from the previous explorat
 
 **2. Just like in class, clone the [History.js repo](https://github.com/browserstate/history.js/) into your home directory**
 
-**3. Thats it for setup
+**3. Thats it for setup**
 
 ---
 ### Printing Hello World
-**1. `cd` into your Apache document root:** `cd /var/www/html`
+**1. `cd` into your Apache document root:** `cd /var/www/html`**
 
 **2. Once you are in your document root, run these commands:**
   - `chmod 777` seems unnecessary but Emscripten has issues with permissions.
@@ -91,7 +91,7 @@ dice.addEventListener( 'click', function() {
 });
 ```
 
-**6. Now if you open that `dice.html` page in the browser you should be able to click the die and have its face change.
+**6. Now if you open that `dice.html` page in the browser you should be able to click the die and have its face change.**
 
 ---
 ### Rendering geometry to the screen with [SDL](https://www.libsdl.org/)
@@ -206,7 +206,7 @@ function evaluate_path( path ) {
     $( 'body' ).css( 'font-family', 'Verdana' );
 }
 ```
-**2. Now if you were to open your index page in the browser, you should only see the screen and the terminal for each page except for the dice roll page because it doesn't have a terminal or a screen.
+**2. Now if you were to open your index page in the browser, you should only see the screen and the terminal for each page except for the dice roll page because it doesn't have a terminal or a screen.**
 
 ---
 ### Journal
@@ -214,5 +214,4 @@ I learned a lot from this Exploration by moving towards a more real life use of 
 
 The biggest hurdle for this exploration was parsing the html files to hide the elements that weren't the screen or terminal.
 
-My instance is [here](http://davidauger.tech/wasm/)
-My repo is [here](https://github.com/deayqf/WebAssembly-AJAX/)
+My instance is [here](http://davidauger.tech/wasm/) and my repo is [here](https://github.com/deayqf/WebAssembly-AJAX/).
