@@ -1,0 +1,21 @@
+@media ( min-width: 768px ) {
+    .container {
+        max-width: 730px;
+    }
+}
+.header {
+    margin-top: 30px;
+    border-bottom: 1px solid #EEE;
+}
+.header h2 {
+    margin-top: 0px;
+    line-height: 40px;
+}
+#output {
+    border-color: black;
+    resize: none;
+    text-indent: 4px;
+}
+body {
+    font-family: Verdana;
+}

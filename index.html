@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha384-Xqcy5ttufkC3rBa8EdiAyA1VgOGrmel2Y+wxm4K3kI3fcjTWlDWrlnxyD6hOi3PF" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://davidauger.tech/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+        <script>
+            $( function() {
+                let History = window.History;
+                var request = location.pathname;
+                evaluate_path( request );
+
+                $( 'nav[ rol="navigation" ] a' ).click( function( e ) {
+                    e.preventDefault();
+                    var href = $( this ).attr( 'href' );
+                    var title = $( this ).attr( 'title' );
+                    History.pushState( { data: title }, title, href );
+                    evaluate_path( href );
+                });
+            });
+
+            window.onpopstate = function( e ) {
+                evaluate_path( location.pathname );
+            }
+
+            History.Adapter.bind( window, 'statechange', function() {
+                var State = History.getState();
+                History.log( State.data, State.title, State.url );
+            });
+
+            function evaluate_path( path ) {
+                var page = path.split( '/' ).pop();
+                page = !page ? 'home' : page;
+
+                $( 'ul.nav' ).find( 'a' ).each( function() {
+                    $( this ).blur();
+                    var href = $( this ).attr( 'href' ).split( '/' ).pop();
+                    href = !href ? 'home' : href;
+                    if( href == page ) {
+                        var header = $( this ).attr( 'title' );
+                        var title = $( this ).html();
+                        document.title = title;
+                        $( '#header' ).html( '<h3>' + header + '</h3>' );
+                        set_pill_active( $( this ).parent() );
+                    }
+                });
+
+                if( page != 'home' && page != 'dr' ) {
+                    $( '#content' ).load( page + '.html', function( content ) {
+                        $( this ).children().not( '.emscripten_border, #output' ).hide();
+                    });
+                } else {
+                    $.get( page + '.html', stage_content );
+                }
+                $( 'body' ).css( 'font-family', 'Verdana' );
+            }
+
+            function set_pill_active( pill ) {
+                pill.siblings().removeClass( 'active' );
+                pill.addClass( 'active' );
+            }
+
+            function stage_content( content ) {
+                $( '#content' ).html( content );
+            }
+
+            function loadContent( href ) {
+                $( '#content' ).load( 'hw.html', function() {
+                    $( this ).children().not( '.emscripten_border, #output' ).hide();
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header clearfix">
+                <nav role="navigation">
+                    <ul class="nav nav-pills pull-right">
+                        <li><a href="./" title="Exploration 2: WebAssembly + AJAX + History.js">About</a></li>
+                        <li><a href="./hw" title="Printing 'Hello, World'">HelloWorld</a></li>
+                        <li><a href="./dr" title="Calling a C function with JavaScript">RollTheDice</a></li>
+                        <li><a href="./stc" title="Using SDL to render geometry">StopTheCube</a></li>
+                    </ul>
+                </nav>
+                <h2 class="text-muted">WebAssembly</h2>
+            </div>
+            <div class="panel panel-default" style="margin-top: 10px;">
+                <div class="panel-heading" id="header"></div>
+                <div class="panel-body" id="content"></div>
+            </div>
+        </div>
+    </body>
+</html>
